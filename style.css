@@ -1,0 +1,623 @@
+/* Reset y variables globales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #ff6b8b;
+    --secondary-color: #6b5bff;
+    --accent-color: #ffa726;
+    --light-color: #fff5f7;
+    --dark-color: #5a3a3a;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --gradient: linear-gradient(135deg, #ffafbd, #ffc3a0);
+    --gradient-alt: linear-gradient(135deg, #a18cd1, #fbc2eb);
+    --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Más suave */
+    --border-radius: 20px;
+    --font-primary: 'Playfair Display', serif;
+    --font-cursive: 'Pacifico', cursive;
+    --font-script: 'Dancing Script', cursive;
+}
+
+/* Estilos generales */
+body {
+    font-family: var(--font-primary);
+    background: var(--light-color);
+    color: var(--dark-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    scroll-behavior: smooth; /* Scroll suave */
+}
+
+/* Fondo con corazones animados mejorado (parallax sutil) */
+.hearts-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background: radial-gradient(circle at 20% 50%, rgba(255, 107, 139, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(107, 91, 255, 0.1) 0%, transparent 50%);
+}
+
+.hearts-background::before,
+.hearts-background::after,
+.hearts-background::nth-child(3) { /* Agregué un tercer corazón */
+    content: "❤️";
+    position: absolute;
+    font-size: 24px;
+    opacity: 0.1;
+    animation: float 25s infinite linear;
+}
+
+.hearts-background::before {
+    top: 10%;
+    left: 5%;
+    animation-delay: 0s;
+}
+
+.hearts-background::after {
+    top: 20%;
+    right: 10%;
+    animation-delay: 5s;
+}
+
+.hearts-background::nth-child(3) {
+    top: 60%;
+    left: 50%;
+    animation-delay: 10s;
+}
+
+@keyframes float {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(-100vh) rotate(360deg); }
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Encabezado mejorado */
+.header {
+    text-align: center;
+    padding: 50px 20px;
+    background: var(--gradient);
+    border-radius: var(--border-radius);
+    margin-bottom: 40px;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: var(--accent-color);
+}
+
+.header:hover {
+    transform: translateY(-5px);
+}
+
+.title {
+    font-family: var(--font-cursive);
+    font-size: 3.5rem;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+}
+
+.title-heart {
+    animation: heartbeat 1.5s infinite;
+    display: inline-block;
+}
+
+.subtitle {
+    font-family: var(--font-script);
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 700;
+}
+
+/* Tarjetas comunes mejoradas */
+.message-card,
+.counter-card,
+.promises-card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow);
+    border: 2px solid rgba(255, 107, 139, 0.1);
+    transition: var(--transition);
+    position: relative;
+}
+
+.message-card:hover,
+.counter-card:hover,
+.promises-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+}
+
+.card-header h2 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Mensaje de amor */
+.love-letter {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    color: #555;
+    text-align: justify;
+}
+
+.signature {
+    text-align: right;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px dashed var(--primary-color);
+}
+
+.signature h3 {
+    font-family: var(--font-script);
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-top: 5px;
+}
+
+/* Contador mejorado */
+.counter-section {
+    background: var(--gradient-alt);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    margin-bottom: 40px;
+}
+
+.counter-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+.counter-display {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    margin: 40px 0;
+}
+
+.time-unit {
+    background: var(--gradient);
+    padding: 25px 15px;
+    border-radius: 15px;
+    text-align: center;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.time-unit:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.time-unit::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--accent-color);
+}
+
+.number {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: white;
+    display: block;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.label {
+    font-size: 1.2rem;
+    color: white;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.counter-note {
+    text-align: center;
+    font-style: italic;
+    color: var(--dark-color);
+    font-size: 1.1rem;
+    margin-top: 20px;
+}
+
+/* Galería mejorada */
+.gallery-section {
+    margin-bottom: 40px;
+}
+
+.gallery-section h2 {
+    color: var(--secondary-color);
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.memory {
+    background: linear-gradient(135deg, var(--color), rgba(255, 255, 255, 0.9));
+    padding: 30px 20px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    transition: var(--transition);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.memory:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.memory-image-container {
+    width: 100%;
+    height: 320px;
+    overflow: hidden;
+    border-radius: 16px 16px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.memory-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    transition: var(--transition);
+}
+
+.memory:hover 
+.memory-image-container img {
+    transform: scale(1.1);
+}
+
+.memory-content {
+    padding: 20px;
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.5),
+        rgba(0,0,0,0)
+    );
+}
+
+.memory h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.memory p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    color: white;
+}
+
+/* Promesas mejoradas */
+.promises-list {
+    list-style: none;
+    padding: 0;
+}
+
+.promises-list li {
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    background: rgba(255, 107, 139, 0.1);
+    border-radius: 10px;
+    border-left: 5px solid var(--primary-color);
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: var(--transition);
+}
+
+.promises-list li:hover {
+    background: rgba(255, 107, 139, 0.2);
+    transform: translateX(10px);
+}
+
+.promises-list i {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+}
+
+/* Footer mejorado */
+.footer {
+    text-align: center;
+    padding: 40px 20px;
+    background: var(--dark-color);
+    color: white;
+    border-radius: var(--border-radius);
+    margin-top: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.heart-animation {
+    margin-bottom: 20px;
+}
+
+.beating-heart {
+    font-size: 4rem;
+    color: var(--primary-color);
+    animation: heartbeat 1.5s infinite;
+    filter: drop-shadow(0 0 10px rgba(255, 107, 139, 0.5));
+}
+
+.footer-text {
+    font-size: 1.5rem;
+    font-family: var(--font-script);
+    margin-bottom: 15px;
+}
+
+.footer-date {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+}
+
+/* Botón secreto mejorado */
+.secret-button {
+    background: var(--gradient);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 auto;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: var(--shadow);
+}
+
+.secret-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(255, 107, 139, 0.4);
+}
+
+.secret-button:focus {
+    outline: 2px solid var(--accent-color);
+}
+
+/* Modal mejorado */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: var(--gradient);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    max-width: 600px;
+    width: 90%;
+    position: relative;
+    animation: modalAppear 0.5s ease;
+    color: white;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes modalAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.7) rotate(-5deg);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: white;
+    transition: var(--transition);
+}
+
+.close-modal:hover {
+    transform: rotate(90deg);
+}
+
+.modal-content h2 {
+    color: white;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.secret-message {
+    font-size: 1.4rem;
+    line-height: 1.8;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.modal-hearts {
+    text-align: center;
+    font-size: 2rem;
+    letter-spacing: 10px;
+    animation: pulse 2s infinite;
+}
+
+/* Animaciones */
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Responsive mejorado */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.5rem;
+    }
+    
+    .subtitle {
+        font-size: 1.5rem;
+    }
+    
+    .counter-display {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .number {
+        font-size: 2.5rem;
+    }
+    
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+    
+    .love-letter {
+        font-size: 1.1rem;
+    }
+    
+    .memory-image-container {
+        height: 260px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .title {
+        font-size: 2rem;
+    }
+    
+    .counter-display {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-content {
+        padding: 25px 20px;
+    }
+    
+    .memory-image-container {
+        height: 200px;
+    }
+}
+
+/* Carrusel (si lo usas) */
+.carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.carousel-img {
+    max-width: 100%;
+    max-height: 60vh;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    animation: fadeIn 0.4s ease;
+}
+
+.carousel-btn {
+    background: rgba(255,255,255,0.3);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    padding: 10px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.carousel-btn:hover {
+    background: rgba(255,255,255,0.6);
+    transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
