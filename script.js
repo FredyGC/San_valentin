@@ -1,6 +1,6 @@
 // Configuración - ¡CAMBIAR ESTA FECHA!
 const LOVE_START_DATE = new Date("2022-01-30T00:00:00");
-const SECRET_MESSAGE = "Tengo un proceso bioquímico en el hipotalamo debido a la segregación de dopamida";
+const SECRET_MESSAGE = "Tengo un proceso bioquímico en el hipotalamo debido a la segregación de dopamina";
 
 // Elementos DOM
 const daysElement = document.getElementById('days');
